@@ -1,0 +1,60 @@
+var matchText = 'Confirm';
+	var added=0;
+    function confirmAllRequests() {
+        var clicked = false;
+		console.clear();
+        var buttons = document.getElementsByTagName("div");
+        for (var counter = 0, length = buttons.length; counter < length; counter++) {
+            var target = buttons[counter];
+            if (target) {
+                var ariaLabel = target.getAttribute("aria-label");
+                // console.log("ariaLabel is", ariaLabel);
+                if (ariaLabel) {
+                    var text = ariaLabel.trim();
+					
+                    if (text === matchText) {
+                        target.click();
+                        // target.focus();
+                        clicked = true;
+						added++;
+						console.log("Confirm Button Clicked: "+added);
+                        target.remove();
+                        break;
+						}else if ( text.includes("See") || text.includes("More")  ){
+							target.click();
+							console.log("See More Clicked!");
+							clicked = true;
+							break;
+					}
+                }
+            }
+        }
+        if (clicked) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+function startConfirming(){
+	if (confirmAllRequests()){	
+		
+		setTimeout(function(){
+			startConfirming();
+		}, delayTime);
+		
+	} else  {
+		
+													alert(`Friends Added: ${added}
+****~Script by: Tigerzplace~****
+`);
+	}
+
+}
+var delayTime = prompt ("Delay Time", 5)*1000;
+
+if (delayTime >=0 && delayTime!=null){
+	console.log("Script is started!");
+	startConfirming();
+}else {alert ("Failed to Start!");}
+
