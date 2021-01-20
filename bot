@@ -44,10 +44,7 @@ function startConfirming(){
 		}, delayTime);
 		
 	} else  {
-		
-													alert(`Friends Added: ${added}
-****~Script by: Tigerzplace~****
-`);
+		alert(`Friends Added: ${added}`);
 	}
 
 }
